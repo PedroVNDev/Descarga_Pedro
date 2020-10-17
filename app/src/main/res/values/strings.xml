@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Descarga_Pedro</string>
+
+    <string name="DescImageView">Imagenes en un Imageview</string>
+    <string name="boton1">Descargar</string>
+    <string name="boton2">Añadir Permisos</string>
+    <string name="boton3">Guardar</string>
+</resources>

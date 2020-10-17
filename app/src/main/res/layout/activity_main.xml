@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/botonPermisos"
+        android:layout_width="129dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="17dp"
+        android:text="@string/boton2"
+        app:layout_constraintBottom_toTopOf="@+id/botonDescargar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/botonGuardar"
+        app:layout_constraintTop_toBottomOf="@+id/Imagenes" />
+
+    <Button
+        android:id="@+id/botonGuardar"
+        android:layout_width="110dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="107dp"
+        android:text="@string/boton3"
+        app:layout_constraintBottom_toBottomOf="@+id/botonPermisos"
+        app:layout_constraintEnd_toStartOf="@+id/botonPermisos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/botonPermisos"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/botonDescargar"
+        android:layout_width="123dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="398dp"
+        android:text="@string/boton1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonPermisos" />
+
+    <ImageView
+        android:id="@+id/Imagenes"
+        android:layout_width="341dp"
+        android:layout_height="201dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="39dp"
+        android:contentDescription="@string/DescImageView"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/botonPermisos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
