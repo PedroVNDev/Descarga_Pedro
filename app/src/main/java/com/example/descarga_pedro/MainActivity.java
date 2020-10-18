@@ -1,7 +1,6 @@
 package com.example.descarga_pedro;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -19,8 +18,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -32,9 +33,9 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     public static int contador = 0;
-    private ImageView Imagenes;
     private Button botonGuardar, botonDescargar, botonPermisos;
     private int REQUEST_CODE = 69;
+    private boolean checkDescarga = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,76 +51,82 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isReadStorageAllowed()) {
-                    final ImageView ImagenIv = (ImageView) findViewById(R.id.Imagenes);
+                    if (checkDescarga) {
 
-                    Timer timer;
-                    timer = new Timer();
+                        checkDescarga = false;
+                        final ImageView ImagenIv = (ImageView) findViewById(R.id.Imagenes);
 
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            runOnUiThread(new Runnable() {
+                        Timer timer;
+                        timer = new Timer();
 
-                                @Override
-                                public void run() {
-                                    contador++;
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                runOnUiThread(new Runnable() {
 
-                                    if (contador == 1) {
-                                        Picasso.get().load("https://i.imgur.com/B9A7TM7.jpeg").into(ImagenIv);
-                                        ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
-                                        imageView.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                Uri uri = Uri.parse("https://www.youtube.com/watch?v=_Qb2zNfIIBY");
-                                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                                startActivity(intent);
-                                            }
-                                        });
-                                    }
+                                    @Override
+                                    public void run() {
+                                        contador++;
 
-                                    if (contador == 2) {
-                                        Picasso.get().load("https://i.ytimg.com/vi/GRxw7ttFczE/maxresdefault.jpg").into(ImagenIv);
-                                        ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
-                                        imageView.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                Uri uri = Uri.parse("https://www.youtube.com/watch?v=PQvFtSJEXu8");
-                                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                                startActivity(intent);
-                                            }
-                                        });
-                                    }
-
-                                    if (contador == 3) {
-                                        Picasso.get().load("https://i.imgur.com/1DSSRov.jpg").into(ImagenIv);
-                                        ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
-                                        imageView.setOnClickListener(new View.OnClickListener() {
-                                            public void onClick(View v) {
-                                                Uri uri = Uri.parse("https://www.youtube.com/watch?v=kJQP7kiw5Fk");
-                                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                                startActivity(intent);
-                                            }
-                                        });
-                                    }
-
-                                    if (contador == 3) {
-                                        contador = 0;
-                                    }
-
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-
+                                        if (contador == 1) {
+                                            Picasso.get().load("https://i.imgur.com/B9A7TM7.jpeg").into(ImagenIv);
+                                            ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
+                                            imageView.setOnClickListener(new View.OnClickListener() {
+                                                public void onClick(View v) {
+                                                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=_Qb2zNfIIBY");
+                                                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                                    startActivity(intent);
+                                                }
+                                            });
                                         }
-                                    }, 5000);
 
-                                }
-                            });
-                        }
-                    }, 0, 5000);
+                                        if (contador == 2) {
+                                            Picasso.get().load("https://i.ytimg.com/vi/GRxw7ttFczE/maxresdefault.jpg").into(ImagenIv);
+                                            ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
+                                            imageView.setOnClickListener(new View.OnClickListener() {
+                                                public void onClick(View v) {
+                                                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=PQvFtSJEXu8");
+                                                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        }
 
+                                        if (contador == 3) {
+                                            Picasso.get().load("https://i.imgur.com/1DSSRov.jpg").into(ImagenIv);
+                                            ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
+                                            imageView.setOnClickListener(new View.OnClickListener() {
+                                                public void onClick(View v) {
+                                                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=kJQP7kiw5Fk");
+                                                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        }
 
-                    Toast.makeText(getApplicationContext(), "Descarga completada", Toast.LENGTH_SHORT).show();
+                                        if (contador == 3) {
+                                            contador = 0;
+                                        }
+
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+
+                                            }
+                                        }, 5000);
+
+                                    }
+                                });
+                            }
+                        }, 0, 5000);
+
+                        Toast.makeText(getApplicationContext(), "Descarga completada", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Las imagenes ya fueron descargadas", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Los permisos no estan habilitados", Toast.LENGTH_SHORT).show();
                 }
@@ -131,21 +138,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isReadStorageAllowed()) {
-                    System.out.println(contador);
+                    if (!checkDescarga) {
 
-                    if (contador == 1) {
-                        saveImage("https://i.imgur.com/B9A7TM7.jpeg");
-                        Toast.makeText(getApplicationContext(), "Se descargo la imagen1", Toast.LENGTH_SHORT).show();
-                    }
+                        if (contador == 1) {
+                            saveImage("https://i.imgur.com/B9A7TM7.jpeg");
+                            Toast.makeText(getApplicationContext(), "Se descargo la imagen1", Toast.LENGTH_SHORT).show();
+                        }
 
-                    if (contador == 2) {
-                        saveImage("https://i.ytimg.com/vi/GRxw7ttFczE/maxresdefault.jpg");
-                        Toast.makeText(getApplicationContext(), "Se descargo la imagen2", Toast.LENGTH_SHORT).show();
-                    }
+                        if (contador == 2) {
+                            saveImage("https://i.ytimg.com/vi/GRxw7ttFczE/maxresdefault.jpg");
+                            Toast.makeText(getApplicationContext(), "Se descargo la imagen2", Toast.LENGTH_SHORT).show();
+                        }
 
-                    if (contador == 0) {
-                        saveImage("https://i.imgur.com/1DSSRov.jpg");
-                        Toast.makeText(getApplicationContext(), "Se descargo la imagen3", Toast.LENGTH_SHORT).show();
+                        if (contador == 0) {
+                            saveImage("https://i.imgur.com/1DSSRov.jpg");
+                            Toast.makeText(getApplicationContext(), "Se descargo la imagen3", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Primero descarga las imagenes", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
@@ -183,11 +194,10 @@ public class MainActivity extends AppCompatActivity {
                         directory.mkdirs();
                     }
 
-                    FileOutputStream fileOutputStream = new FileOutputStream(new File(directory, new Date().toString().concat(String.valueOf(contador)).concat("jpg")));
+                    FileOutputStream fileOutputStream = new FileOutputStream(new File(directory, new Date().toString().concat(" Imagen_").concat(String.valueOf(contador)).concat(".jpg")));
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
                     fileOutputStream.flush();
                     fileOutputStream.close();
-                    Toast.makeText(getApplicationContext(), "Guardar", Toast.LENGTH_LONG).show();
 
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
