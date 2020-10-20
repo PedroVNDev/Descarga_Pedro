@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
     //Metodo que comprueba el estado del permiso si fue denegado devolvera false y viceversa
     private boolean isReadStorageAllowed() {
 
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+        int result = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         if (result == PackageManager.PERMISSION_GRANTED) {
             return true;
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
     //Metodo que pide los permisos
     private void requestStoragePermission() {
 
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
     }
 
     //Metodo que es llamado cuando el usuario pulsa Aceptar o Denegar
