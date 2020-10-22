@@ -5,4 +5,5 @@
     <string name="boton1">Descargar</string>
     <string name="boton2">Añadir Permisos</string>
     <string name="boton3">Guardar</string>
+    <string name="boton4">Pass</string>
 </resources>

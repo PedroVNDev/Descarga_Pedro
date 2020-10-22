@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,9 +34,17 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     public static int contador = 0;
-    private Button botonGuardar, botonDescargar, botonPermisos;
+    private Button botonGuardar, botonDescargar, botonPermisos, botonPass;
     private int REQUEST_CODE = 69;
     private boolean checkDescarga = true;
+
+    String link1 = "https://www.youtube.com/watch?v=_Qb2zNfIIBY";
+    String link2 = "https://www.youtube.com/watch?v=PQvFtSJEXu8";
+    String link3 = "https://www.youtube.com/watch?v=kJQP7kiw5Fk";
+
+    String imagen1 = "https://i.imgur.com/B9A7TM7.jpeg";
+    String imagen2 = "https://i.ytimg.com/vi/GRxw7ttFczE/maxresdefault.jpg";
+    String imagen3 = "https://i.imgur.com/1DSSRov.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         botonGuardar = (Button) findViewById(R.id.botonGuardar);
         botonDescargar = (Button) findViewById(R.id.botonDescargar);
         botonPermisos = (Button) findViewById(R.id.botonPermisos);
+        botonPass = (Button) findViewById(R.id.botonPass);
 
         //Boton que descarga las imagenes y las muestra en un ImageView
         botonDescargar.setOnClickListener(new View.OnClickListener() {
@@ -69,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
                                         contador++;
 
                                         if (contador == 1) {
-                                            Picasso.get().load("https://i.imgur.com/B9A7TM7.jpeg").into(ImagenIv);
+                                            Picasso.get().load(imagen1).into(ImagenIv);
                                             ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
                                             imageView.setOnClickListener(new View.OnClickListener() {
                                                 public void onClick(View v) {
-                                                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=_Qb2zNfIIBY");
+                                                    Uri uri = Uri.parse(link1);
                                                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                                                     startActivity(intent);
                                                 }
@@ -81,11 +91,11 @@ public class MainActivity extends AppCompatActivity {
                                         }
 
                                         if (contador == 2) {
-                                            Picasso.get().load("https://i.ytimg.com/vi/GRxw7ttFczE/maxresdefault.jpg").into(ImagenIv);
+                                            Picasso.get().load(imagen2).into(ImagenIv);
                                             ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
                                             imageView.setOnClickListener(new View.OnClickListener() {
                                                 public void onClick(View v) {
-                                                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=PQvFtSJEXu8");
+                                                    Uri uri = Uri.parse(link2);
                                                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                                                     startActivity(intent);
                                                 }
@@ -93,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
                                         }
 
                                         if (contador == 3) {
-                                            Picasso.get().load("https://i.imgur.com/1DSSRov.jpg").into(ImagenIv);
+                                            Picasso.get().load(imagen3).into(ImagenIv);
                                             ImageView imageView = (ImageView) findViewById(R.id.Imagenes);
                                             imageView.setOnClickListener(new View.OnClickListener() {
                                                 public void onClick(View v) {
-                                                    Uri uri = Uri.parse("https://www.youtube.com/watch?v=kJQP7kiw5Fk");
+                                                    Uri uri = Uri.parse(link3);
                                                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                                                     startActivity(intent);
                                                 }
@@ -175,6 +185,26 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 requestStoragePermission();
+            }
+        });
+
+        botonPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isReadStorageAllowed()){
+
+                    ArrayList<String> listaImagenes = new ArrayList<String>();
+
+                    listaImagenes.add(imagen1);
+                    listaImagenes.add(imagen2);
+                    listaImagenes.add(imagen3);
+
+                    Toast.makeText(MainActivity.this, "Viajando a la 2º Actividad", Toast.LENGTH_LONG).show();
+                    Intent miIntent = new Intent(getApplicationContext(), SecondActivity.class);
+
+                    miIntent.putStringArrayListExtra("list", listaImagenes);
+                    startActivity(miIntent);
+                }
             }
         });
 
